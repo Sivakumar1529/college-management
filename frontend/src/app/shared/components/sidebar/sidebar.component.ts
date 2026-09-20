@@ -11,8 +11,8 @@ import { AuthService } from '../../../core/services/auth.service';
     <aside class="sidebar" [class.collapsed]="collapsed">
       <div class="sidebar-header">
         <div class="logo" *ngIf="!collapsed">
-          <span class="logo-icon">🎓</span>
-          <span class="logo-text">CMS</span>
+          <img src="assets/hicas-logo.jpg" alt="HICAS Logo" class="logo-image" />
+          <span class="logo-text">HICAS</span>
         </div>
         <button class="toggle-btn" (click)="collapsed = !collapsed">
           {{ collapsed ? '▶' : '◀' }}
@@ -104,12 +104,19 @@ import { AuthService } from '../../../core/services/auth.service';
       align-items: center;
       gap: 10px;
     }
-    .logo-icon { font-size: 28px; }
+    .logo-image {
+      width: 36px;
+      height: 36px;
+      object-fit: contain;
+      border-radius: 8px;
+      background: rgba(255, 255, 255, 0.08);
+      padding: 3px;
+    }
     .logo-text {
-      font-size: 22px;
+      font-size: 17px;
       font-weight: 700;
       color: #fff;
-      letter-spacing: 2px;
+      letter-spacing: 1px;
     }
     .toggle-btn {
       background: rgba(255, 255, 255, 0.06);

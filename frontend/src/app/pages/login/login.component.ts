@@ -5,16 +5,27 @@ import { Router } from '@angular/router';
 import { AuthService } from '../../core/services/auth.service';
 
 @Component({
-    selector: 'app-login',
-    standalone: true,
-    imports: [CommonModule, FormsModule],
-    template: `
+  selector: 'app-login',
+  standalone: true,
+  imports: [CommonModule, FormsModule],
+  template: `
     <div class="login-page">
       <div class="login-left">
         <div class="brand-content">
-          <div class="brand-icon">🎓</div>
-          <h1>College Management System</h1>
-          <p>Streamline your college operations with our centralized management platform</p>
+          <!-- College Logo -->
+          <img src="assets/hicas-logo.jpg" alt="HICAS Logo" class="brand-logo" onerror="this.style.display='none'" />
+          
+          <h1>Hindusthan College of Arts & Science</h1>
+          <p class="college-tagline">HICAS • NAAC A++</p>
+          
+          <div class="about-section">
+            <h3>About</h3>
+            <p><strong>Address:</strong> Avinashi Rd, behind Nava India, Udayampalayam, Tamil Nadu 641028</p>
+            <p><strong>Phone:</strong> +91 98431 33333</p>
+            <p><strong>Mobile:</strong> +91 80983 33333</p>
+            <p><strong>Email:</strong> info&#64;hindusthan.net</p>
+          </div>
+
           <div class="features">
             <div class="feature"><span>✓</span> Student Management</div>
             <div class="feature"><span>✓</span> Attendance Tracking</div>
@@ -54,7 +65,7 @@ import { AuthService } from '../../core/services/auth.service';
       </div>
     </div>
   `,
-    styles: [`
+  styles: [`
     .login-page {
       display: flex;
       min-height: 100vh;
@@ -91,18 +102,39 @@ import { AuthService } from '../../core/services/auth.service';
       border-radius: 50%;
     }
     .brand-content { position: relative; z-index: 2; color: #fff; max-width: 480px; }
+    .brand-logo {
+      width: 120px;
+      height: 120px;
+      object-fit: contain;
+      margin-bottom: 20px;
+      display: block;
+      background: rgba(255, 255, 255, 0.08);
+      border-radius: 18px;
+      padding: 10px;
+    }
     .brand-icon { font-size: 60px; margin-bottom: 20px; }
     .brand-content h1 {
-      font-size: 36px;
+      font-size: 34px;
       font-weight: 800;
-      margin: 0 0 16px 0;
+      margin: 0 0 12px 0;
       line-height: 1.2;
+    }
+    .college-tagline {
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      color: #dbeafe;
+      font-size: 14px;
+      margin: 0 0 24px;
+    }
+    .about-section h3 {
+      margin: 0 0 12px;
+      font-size: 22px;
     }
     .brand-content p {
       font-size: 16px;
-      color: #a5b4fc;
+      color: #dbeafe;
       line-height: 1.6;
-      margin-bottom: 32px;
+      margin-bottom: 10px;
     }
     .features { display: flex; flex-direction: column; gap: 12px; }
     .feature {
@@ -224,45 +256,45 @@ import { AuthService } from '../../core/services/auth.service';
   `]
 })
 export class LoginComponent {
-    username = '';
-    password = '';
-    loading = false;
-    error = '';
+  username = '';
+  password = '';
+  loading = false;
+  error = '';
 
-    constructor(private authService: AuthService, private router: Router) {
-        if (this.authService.isLoggedIn()) {
-            this.redirectByRole();
-        }
+  constructor(private authService: AuthService, private router: Router) {
+    if (this.authService.isLoggedIn()) {
+      this.redirectByRole();
     }
+  }
 
-    fillCredentials(username: string, password: string) {
-        this.username = username;
-        this.password = password;
+  fillCredentials(username: string, password: string) {
+    this.username = username;
+    this.password = password;
+  }
+
+  onLogin() {
+    this.loading = true;
+    this.error = '';
+
+    this.authService.login({ username: this.username, password: this.password }).subscribe({
+      next: () => {
+        this.loading = false;
+        this.redirectByRole();
+      },
+      error: (err) => {
+        this.loading = false;
+        this.error = err.error?.message || 'Invalid credentials. Please try again.';
+      }
+    });
+  }
+
+  private redirectByRole() {
+    const role = this.authService.getRole();
+    switch (role) {
+      case 'ADMIN': this.router.navigate(['/admin/dashboard']); break;
+      case 'TEACHER': this.router.navigate(['/teacher/attendance']); break;
+      case 'STUDENT': this.router.navigate(['/student/profile']); break;
+      default: this.router.navigate(['/login']);
     }
-
-    onLogin() {
-        this.loading = true;
-        this.error = '';
-
-        this.authService.login({ username: this.username, password: this.password }).subscribe({
-            next: () => {
-                this.loading = false;
-                this.redirectByRole();
-            },
-            error: (err) => {
-                this.loading = false;
-                this.error = err.error?.message || 'Invalid credentials. Please try again.';
-            }
-        });
-    }
-
-    private redirectByRole() {
-        const role = this.authService.getRole();
-        switch (role) {
-            case 'ADMIN': this.router.navigate(['/admin/dashboard']); break;
-            case 'TEACHER': this.router.navigate(['/teacher/attendance']); break;
-            case 'STUDENT': this.router.navigate(['/student/profile']); break;
-            default: this.router.navigate(['/login']);
-        }
-    }
+  }
 }
