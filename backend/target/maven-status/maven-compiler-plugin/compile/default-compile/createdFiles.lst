@@ -13,7 +13,6 @@ com\college\management\security\JwtUtil.class
 com\college\management\service\DepartmentService.class
 com\college\management\dto\AttendanceSummary$AttendanceSummaryBuilder.class
 com\college\management\dto\AttendanceSummary.class
-com\college\management\dto\MarksRequest$MarksRequestBuilder.class
 com\college\management\dto\MarksRequest.class
 com\college\management\config\CorsConfig.class
 com\college\management\controller\AuthController.class

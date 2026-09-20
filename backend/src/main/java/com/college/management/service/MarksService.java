@@ -16,8 +16,8 @@ public class MarksService {
     private final TeacherRepository teacherRepository;
 
     public MarksService(MarksRepository marksRepository,
-            StudentRepository studentRepository,
-            TeacherRepository teacherRepository) {
+                        StudentRepository studentRepository,
+                        TeacherRepository teacherRepository) {
         this.marksRepository = marksRepository;
         this.studentRepository = studentRepository;
         this.teacherRepository = teacherRepository;
