@@ -10,6 +10,14 @@ import { Student, Department } from '../../../shared/models/models';
     imports: [CommonModule, FormsModule],
     template: `
     <div class="page">
+      <div class="page-hero">
+        <img src="assets/college-campus.jpg" alt="HICAS campus" />
+        <div class="hero-copy">
+          <span>HICAS</span>
+          <h2>Student Management</h2>
+        </div>
+      </div>
+
       <div class="page-header">
         <div>
           <h1>Students</h1>
@@ -109,6 +117,48 @@ import { Student, Department } from '../../../shared/models/models';
     </div>
   `,
     styles: [`
+    .page {
+      background: #fff;
+      border-radius: 20px;
+      padding: 20px;
+      box-shadow: 0 8px 24px rgba(15, 23, 42, 0.04);
+      border: 1px solid rgba(148, 163, 184, 0.12);
+    }
+    .page-hero {
+      position: relative;
+      overflow: hidden;
+      border-radius: 16px;
+      margin-bottom: 22px;
+      border: 1px solid rgba(148, 163, 184, 0.18);
+    }
+    .page-hero img {
+      display: block;
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+    }
+    .hero-copy {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 20px 28px;
+      background: linear-gradient(90deg, rgba(15, 23, 42, 0.72), rgba(15, 23, 42, 0.18));
+      color: #fff;
+    }
+    .hero-copy span {
+      font-size: 12px;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      margin-bottom: 10px;
+      opacity: 0.9;
+    }
+    .hero-copy h2 {
+      margin: 0;
+      font-size: 28px;
+      line-height: 1.2;
+    }
     .page-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 24px; }
     .page-header h1 { font-size: 26px; font-weight: 700; color: #1a1f36; margin: 0 0 4px 0; }
     .page-header p { color: #6b7280; font-size: 14px; margin: 0; }

@@ -9,9 +9,18 @@ import { DashboardStats } from '../../../shared/models/models';
     imports: [CommonModule],
     template: `
     <div class="dashboard">
+      <div class="college-hero">
+        <img src="assets/college-banner.jpg" alt="HICAS campus" />
+        <div class="hero-overlay">
+          <span class="eyebrow">HICAS</span>
+          <h1>Hindusthan College of Arts & Science</h1>
+          <p>Empowering learning, creativity, and excellence since 2000.</p>
+        </div>
+      </div>
+
       <div class="page-header">
         <h1>Dashboard</h1>
-        <p>Overview of college management system</p>
+        <p>Overview of Hindusthan College of Arts & Science</p>
       </div>
 
       <div class="stats-grid">
@@ -59,6 +68,56 @@ import { DashboardStats } from '../../../shared/models/models';
   `,
     styles: [`
     .dashboard { padding: 10px 0; }
+    .college-hero {
+      position: relative;
+      overflow: hidden;
+      border-radius: 20px;
+      margin-bottom: 28px;
+      box-shadow: 0 10px 25px rgba(15, 23, 42, 0.08);
+      border: 1px solid rgba(148, 163, 184, 0.18);
+      background: #fff;
+    }
+    .college-hero img {
+      width: 100%;
+      height: 280px;
+      object-fit: cover;
+      display: block;
+      filter: saturate(1.1) contrast(1.04);
+    }
+    .hero-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(90deg, rgba(15, 23, 42, 0.8), rgba(15, 23, 42, 0.2));
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 32px 40px;
+      color: #fff;
+    }
+    .eyebrow {
+      display: inline-block;
+      width: fit-content;
+      background: rgba(255,255,255,0.12);
+      border: 1px solid rgba(255,255,255,0.2);
+      border-radius: 999px;
+      padding: 8px 12px;
+      font-size: 12px;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      margin-bottom: 12px;
+    }
+    .hero-overlay h1 {
+      margin: 0;
+      font-size: 34px;
+      line-height: 1.15;
+      max-width: 620px;
+    }
+    .hero-overlay p {
+      margin-top: 10px;
+      font-size: 15px;
+      color: rgba(255,255,255,0.9);
+      max-width: 500px;
+    }
     .page-header { margin-bottom: 32px; }
     .page-header h1 { font-size: 26px; font-weight: 700; color: #1a1f36; margin: 0 0 6px 0; }
     .page-header p { color: #6b7280; font-size: 14px; margin: 0; }

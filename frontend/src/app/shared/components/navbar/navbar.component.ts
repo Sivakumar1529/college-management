@@ -9,7 +9,7 @@ import { AuthService } from '../../../core/services/auth.service';
     template: `
     <header class="navbar">
       <div class="navbar-left">
-        <h2 class="page-title">College Management System</h2>
+        <h2 class="page-title">HICAS</h2>
       </div>
       <div class="navbar-right">
         <div class="user-badge">
