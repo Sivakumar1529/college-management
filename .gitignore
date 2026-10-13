@@ -17,6 +17,7 @@
 .settings/
 .springBeans
 .sts4-cache
+
 .apt_generated
 .c9/
 *.launch
